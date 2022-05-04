@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Notes</title>
-</head>
-<body>
-<h1>These are the notes:</h1>
-<ul>
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="my-5">These are the notes:</h1>
+<div class="row row-cols3 g-2">
     {% for note in notes %}
-    <li>{{note.title}}
-    <p>{{note.note}}</p>
-    </li>
+    <div class="col">
+        <div class="p-3 border">
+            <a href="{% url 'notes.detail' pk=note.id %}" class="text-dark text-decoration-non"/>
+             <h3>{{note.title}}</h3>
+            {{note.note|truncatechars:10}}
+        </div>
+    </div>
     {% endfor %}
-</ul>
-</body>
-</html>
+</div>
+
+
+{% endblock %}
